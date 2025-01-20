@@ -120,8 +120,8 @@ function subStockView($param)
 		if ($_REQUEST['act'] == 'stock') {
 			return;
 		}
-
-		$sql = fnSqlStockList(1, $param);
+		//検索結果数を取得する
+		$sql = fnSqlStockList(0, $param);
 		$res = mysqli_query($param["conn"], $sql);
 		$row = mysqli_fetch_array($res);
 
