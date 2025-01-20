@@ -290,8 +290,8 @@ function subStockEditView($param)
 				<td>
 					<?php
 					for ($i = 0; $i < 4; $i++) {
-					?>
-						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php if ($param["distance"] == $i + 1) print ' checked="checked"'; ?> /> <?php print fnDistanceName($i); ?>
+					?> <!--初期値を「A」に設定する-->
+						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php if ($param["distance"] == $i) print ' checked="checked"'; ?> /> <?php print fnDistanceName($i); ?>
 					<?php
 					}
 					?>
