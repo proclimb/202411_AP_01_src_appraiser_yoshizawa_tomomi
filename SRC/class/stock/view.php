@@ -258,8 +258,8 @@ function subStockEditView($param)
 				<td>
 					<?php
 					for ($i = 0; $i < 5; $i++) {
-					?>
-						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php if ($param["rank"] == $i + 1) print ' checked="checked"'; ?> /> <?php print fnRankName($i); ?>
+					?> <!--「A」を初期表示時に選択する-->
+						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php if ($param["rank"] == $i) print ' checked="checked"'; ?> /> <?php print fnRankName($i); ?>
 					<?php
 					}
 					?>
