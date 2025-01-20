@@ -331,8 +331,8 @@ function subStockEditView($param)
 					<?php
 					for ($i = 0; $i < 6; $i++) {
 					?>
-						<br />
-						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php if ($param["how"] == $i + 1) print ' checked="checked"'; ?> /> <?php print fnHowName($i); ?>
+						<br /> <!--初期値「会社案件」を設定する-->
+						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php if ($param["how"] == $i) print ' checked="checked"'; ?> /> <?php print fnHowName($i); ?>
 					<?php
 					}
 					?>
