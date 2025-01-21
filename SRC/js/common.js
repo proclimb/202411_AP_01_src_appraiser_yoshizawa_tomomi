@@ -7,6 +7,10 @@
 function fnYMDCheck(msg, obj) {
 	// 未入力時はチェックしない
 	oYMD = obj.value;
+	//どのように返すか設定する
+	if (!oYMD) {
+		return true;
+	}
 
 	var tmp = oYMD.split('/');
 	var ymd = new Date(tmp[0], parseInt(tmp[1], 10) - 1, parseInt(tmp[2], 10));
