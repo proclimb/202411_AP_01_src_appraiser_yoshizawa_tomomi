@@ -244,9 +244,19 @@ function subStockEditView($param)
 
 		<table border="0" cellpadding="5" cellspacing="1">
 			<tr>
-				<th>除外</th> <!-- ラジオボタンの初期値を非除外に設定する　-->
-				<td><input type="radio" name="del" value="1" checked /> 非除外
-					<input type="radio" name="del" value="0" /> 除外
+				<th>除外</th> <!-- 仕入更新画面時に除外、非除外ボタンを正しく表示する（登録時は除外ボタンに設定）　-->
+				<td>
+					<?php
+					$check1 = '';
+					$check2 = '';
+					if ($param["del"] == '0') {
+						$check2 = "checked";
+					} else {
+						$check1 = "checked";
+					}
+					?>
+					<input type="radio" name="del" value="1" <?php print $check1; ?> /> 非除外
+					<input type="radio" name="del" value="0" <?php print $check2; ?> /> 除外
 				</td>
 			</tr>
 			<tr>
@@ -256,14 +266,20 @@ function subStockEditView($param)
 			<tr>
 				<th>ランク</th>
 				<td>
-					<?php
+					<?php //適切なランクの設定が表示される
+					if (!$param["stockNo"]) {
+						$param["rank"] = 1;
+					}
 					for ($i = 0; $i < 5; $i++) {
-					?> <!--「A」を初期表示時に選択する-->
-						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php if ($param["rank"] == $i) print ' checked="checked"'; ?> /> <?php print fnRankName($i); ?>
+						$check = '';
+						if (($param["rank"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
+					?>
+						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnRankName($i); ?>
 					<?php
 					}
 					?>
-				</td>
 			</tr>
 			<tr>
 				<th>物件名<span class="red">（必須）</span></th>
@@ -288,14 +304,20 @@ function subStockEditView($param)
 			<tr>
 				<th>距離</th>
 				<td>
-					<?php
+					<?php //適切な距離のラジオボタンが表示される
+					if (!$param["stockNo"]) {
+						$param["distance"] = 1;
+					}
 					for ($i = 0; $i < 4; $i++) {
-					?> <!--初期値を「A」に設定する-->
-						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php if ($param["distance"] == $i) print ' checked="checked"'; ?> /> <?php print fnDistanceName($i); ?>
+						$check = '';
+						if (($param["distance"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
+					?>
+						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnDistanceName($i); ?>
 					<?php
 					}
 					?>
-				</td>
 			</tr>
 			<tr>
 				<th>業者名</th>
@@ -328,11 +350,18 @@ function subStockEditView($param)
 			<tr>
 				<th>仕入経緯</th>
 				<td>
-					<?php
+					<?php //適切な仕入経緯のラジオボタンが表示される
+					if (!$param["stockNo"]) {
+						$param["how"] = 1;
+					}
 					for ($i = 0; $i < 6; $i++) {
+						$check = '';
+						if (($param["how"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
 					?>
-						<br /> <!--初期値「会社案件」を設定する-->
-						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php if ($param["how"] == $i) print ' checked="checked"'; ?> /> <?php print fnHowName($i); ?>
+						<br />
+						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnHowName($i); ?>
 					<?php
 					}
 					?>
@@ -341,7 +370,7 @@ function subStockEditView($param)
 
 		</table>
 
-		<a href="javascript:fnStockEditCheck();"><img src="./images/<?php print $param["btnImage"] ?>" /></a>　
+		<a href="javascript:fnStockEditCheck();"><img src="./images/<?php print $param["btnImage"] ?>" /></a>
 		<a href="javascript:form.act.value='stockEditComplete';form.submit();"><img src="./images/btn_return.png" /></a>
 		<?php
 		if ($param["stockNo"]) {

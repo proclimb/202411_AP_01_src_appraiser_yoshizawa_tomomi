@@ -110,10 +110,10 @@ function fnSqlStockList($flg, $param)
 
 //
 // 仕入管理情報
-//
+// ページ遷移したときにデータがフォームに入るようにする。(RANKは関数のため囲む)
 function fnSqlStockEdit($stockNo)
 {
-    $sql  = "SELECT CHARGE,RANK,ARTICLE,ARTICLEFURI,ROOM,IF(AREA > 0,AREA,''),STATION,DISTANCE,AGENT,STORE,COVER,"
+    $sql  = "SELECT CHARGE,`RANK`,ARTICLE,ARTICLEFURI,ROOM,IF(AREA > 0,AREA,''),STATION,DISTANCE,AGENT,STORE,COVER,"
         . "IF(VISITDT > '0000-00-00',DATE_FORMAT(VISITDT,'%Y/%m/%d'),''),IF(DESKPRICE > 0,DESKPRICE,''),"
         . "IF(VENDORPRICE > 0,VENDORPRICE,''),NOTE,HOW,DEL";
     $sql .= " FROM TBLSTOCK";
