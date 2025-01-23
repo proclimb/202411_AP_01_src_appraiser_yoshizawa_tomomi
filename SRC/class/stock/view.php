@@ -111,8 +111,8 @@ function subStockView($param)
 				</tr>
 			</table>
 		</div>
-
-		<input type="image" src="./images/btn_search.png" onclick="form.act.value='stockEditComplete';form.submit();" />
+		<!--検索ボタンの値が違うので値を変更する-->
+		<input type="image" src="./images/btn_search.png" onclick="form.act.value='stockSearch';form.submit();" />
 
 		<hr />
 
