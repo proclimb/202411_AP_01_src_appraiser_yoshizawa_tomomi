@@ -61,7 +61,9 @@ function fnSqlStockList($flg, $param)
         $where .= " AND AREA <= '" . $param["sAreaTo"] . "'";
     }
     if ($param["sStation"]) {
-        $where .= " AND STATION = '" . $param["sStation"] . "'";
+        //駅名をあいまい検索にする
+        $where .= " AND STATION LIKE '%" . $param["sStation"] . "%'";
+        //$where .= " AND STATION = '" . $param["sStation"] . "'";
     }
     if ($param["sDistance"]) {
         $where .= " AND (";
