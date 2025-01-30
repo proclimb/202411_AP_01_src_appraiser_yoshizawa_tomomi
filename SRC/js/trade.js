@@ -3,7 +3,9 @@
 //
 function fnTradeEditCheck() {
 	tmp = form.name.value;
-	if (tmp.length < 0) {
+	//業者名なしでは新規登録できないようにする　
+	//if (tmp.length < 0) {
+	if (tmp.length == 0) {
 		alert('業者名を入力してください');
 		return;
 	}
