@@ -11,8 +11,9 @@ function fnTradeEditCheck() {
 		alert('業者名は100文字以内で入力してください');
 		return;
 	}
-
-	tmp = form.nameYomi.value;
+	//新規登録するため正しい名前に変更
+	tmp = form.nameFuri.value;
+	//tmp = form.nameYomi.value;
 	if (tmp.length > 100) {
 		alert('業者名（よみ）は100文字以内で入力してください');
 		return;
@@ -71,9 +72,9 @@ function fnTradeEditCheck() {
 		alert('携帯電話は100文字以内で入力してください');
 		return;
 	}
-
+	//新規登録できるようにスペルの確認
 	if (confirm('この内容で登録します。よろしいですか？')) {
-		form.act.value = 'tradeEditCompleta';
+		form.act.value = 'tradeEditComplete';
 		form.submit();
 	}
 }
