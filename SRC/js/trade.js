@@ -87,6 +87,8 @@ function fnTradeEditCheck() {
 function fnTradeDeleteCheck(no) {
 	if (confirm('削除します。よろしいですか？')) {
 		form.tradeNo.value = no;
+		//削除するための値を設定する
+		form.act.value = 'tradeDelete';
 		form.submit();
 	}
 }
