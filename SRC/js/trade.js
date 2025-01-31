@@ -32,9 +32,9 @@ function fnTradeEditCheck() {
 		alert('支店名（よみ）は100文字以内で入力してください');
 		return;
 	}
-	//郵便番号のスペースは許容しないように変更
+	//以前に郵便番号のスペースは許容しないように変更をしたが、今回新たに不具合が生じたため他の修正方法へ変更。
 	tmp = form.zip.value;
-	if (tmp.length > 0 && !tmp.match(/^\d{3}-?\d{4}$/)) {
+	if (tmp.length > 0 && !tmp.match(/^\d{3}-*\d{4}$/)) {
 		//if (tmp.length > 0 && !tmp.match(/^\d{3}(\s*|-)\d{4}$/)) {
 		alert("正しい郵便番号(***-**** 又は ******* )で\n入力してください");
 		return;
