@@ -261,7 +261,8 @@ function subArticleEdit()
 		</table>
 
 		<a href="javascript:fnArticleEditCheck();"><img src="./images/<?php print $btnImage ?>" /></a>
-		<a href="javascript:form.act.value='fManager';form.submit();"><img src="./images/btn_return.png" /></a>
+		<!-- 物件管理一覧画面へ遷移させる　<a href="javascript:form.act.value='fManager';form.submit();"><img src="./images/btn_return.png" /></a>　-->
+		<a href="javascript:form.act.value='articleSearch';form.submit();"><img src="./images/btn_return.png" /></a>
 		<!--物件登録画面の削除ボタンを非表示にする-->
 		<?php if ($articleNo) { ?>
 			&nbsp;&nbsp;<a href="javascript:fnArticleDeleteCheck(<?php print $articleNo ?>);"><img src="./images/btn_del.png" /></a>
