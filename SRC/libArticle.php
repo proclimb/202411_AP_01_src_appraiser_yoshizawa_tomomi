@@ -18,7 +18,8 @@ function subArticle()
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
 	$sPage   = $_REQUEST['sPage'];
-	//チェックボックスにチェックが入らないよう設定 if ($sDel = '') {
+
+	//初期値でチェックボックスにチェックが入らないよう設定 if ($sDel = '') {
 	if ($sDel == '') {
 		$sDel = 1;
 	}
@@ -187,8 +188,8 @@ function subArticleEdit()
 		$purpose = '登録';
 		$btnImage = 'btn_enter.png';
 	}
-
-	subMenu2();
+	//物件登録画面で、メニューが表示されない。 subMenu2();
+	subMenu();
 ?>
 	<script type="text/javascript" src="./js/article.js"></script>
 
