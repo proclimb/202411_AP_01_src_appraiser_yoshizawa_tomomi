@@ -18,8 +18,8 @@ function subArticle()
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
 	$sPage   = $_REQUEST['sPage'];
-
-	if ($sDel = '') {
+	//チェックボックスにチェックが入らないよう設定 if ($sDel = '') {
+	if ($sDel == '') {
 		$sDel = 1;
 	}
 
