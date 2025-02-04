@@ -23,9 +23,9 @@ function subArticle()
 	if ($sDel == '') {
 		$sDel = 1;
 	}
-
+	//ページ表記の修正
 	if (!$sPage) {
-		$sPage = l;
+		$sPage = 1;
 	}
 
 	if (!$orderBy) {
@@ -86,9 +86,10 @@ function subArticle()
 	if ($_REQUEST['act'] == 'article') {
 		return;
 	}
+	//SQLへの命令文修正
 	$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-	$res = mysql_query($sql);
-	$row = mysql_fetch_array($res);
+	$res = mysqli_query($sql);
+	$row = mysqli_fetch_array($res);
 
 	$count = $row[0];
 
