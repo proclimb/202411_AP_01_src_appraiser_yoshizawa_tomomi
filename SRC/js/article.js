@@ -3,14 +3,18 @@
 //
 function fnArticleEditCheck() {
 	tmp = form.article.value;
-	if (tmp) {
+	//入力チェックの条件を修正　if (tmp) {
+	if (tmp.length == 0) {
 		alert('物件名を入力してください');
 		return;
 	}
 	if (isLength(100, "物件名", form.article)) { return; }
 
-	form.act.value = 'articleEditComplete';
-	form.submit();
+	//登録時にメッセージが出るように設定
+	if (confirm('この内容で登録します。よろしいですか？')) {
+		form.act.value = 'articleEditComplete';
+		form.submit();
+	}
 }
 
 
