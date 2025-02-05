@@ -15,25 +15,32 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 	$sql .= " FROM TBLARTICLE";
 	$sql .= " WHERE DEL = $sDel";
 	if ($sArticle) {
-		$sql .= " OR ARTICLE LIKE '%$sArticle$%'";
+		$sArticle = htmlspecialchars_decode($sArticle, ENT_QUOTES);
+		$sql .= " AND ARTICLE LIKE '%$sArticle%'"; //AND検索にし、エスケープされた文字を元に戻す設定
 	}
 	if ($sRoom) {
-		$sql .= " OR ROOM LIKE '%$sRoom%'";
+		$sRoom = htmlspecialchars_decode($sRoom, ENT_QUOTES);
+		$sql .= " AND ROOM LIKE '%$sRoom%'";
 	}
 	if ($sKeyPlace) {
-		$sql .= " OR KEYPLACE LIKE '%$sKeyPlace%'";
+		$sKeyPlace = htmlspecialchars_decode($sKeyPlace, ENT_QUOTES);
+		$sql .= " AND KEYPLACE LIKE '%$sKeyPlace%'";
 	}
 	if ($sArticleNote) {
-		$sql .= " OR ARTICLENOTE LIKE '%$sArticleNote%'";
+		$sArticleNote = htmlspecialchars_decode($sArticleNote, ENT_QUOTES);
+		$sql .= " AND ARTICLENOTE LIKE '%$sArticleNote%'";
 	}
 	if ($sKeyBox) {
-		$sql .= " OR KEYBOX LIKE '%l$sKeyBox%'";
+		$sKeyBox = htmlspecialchars_decode($sKeyBox, ENT_QUOTES);
+		$sql .= " AND KEYBOX LIKE '%$sKeyBox%'"; //スペルチェック
 	}
 	if ($sDrawing) {
-		$sql .= " OR DRAWING LIKE '%$sDrawing%'";
+		$sDrawing = htmlspecialchars_decode($sDrawing, ENT_QUOTES);
+		$sql .= " AND DRAWING LIKE '%$sDrawing%'";
 	}
 	if ($sSellCharge) {
-		$sql .= " OR SELLCHARGE LIKE '%$sSellCharge%'";
+		$sSellCharge = htmlspecialchars_decode($sSellCharge, ENT_QUOTES);
+		$sql .= " AND SELLCHARGE LIKE '%$sSellCharge%'";
 	}
 	if ($orderBy) {
 		$sql .= " ORDER BY $orderBy $orderTo";
