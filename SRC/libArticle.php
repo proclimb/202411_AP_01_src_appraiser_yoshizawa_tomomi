@@ -226,7 +226,8 @@ function subArticleEdit()
 						<input type="radio" name="del" value="1" checked="checked" /> 非除外
 						<input type="radio" name="del" value="0" <?php if ($del == '0') print ' checked="checked"' ?> /> 除外
 					</td>
-				<?php } ?>-->
+				<?php } ?>　
+				-->
 			</tr>
 			<tr>
 				<th>物件名<span class="red">（必須）</span></th>
@@ -318,8 +319,8 @@ function subArticleEditComplete()
 
 		$res = mysqli_query($conn, $sql);
 
-		/* $sql = fnSqlFManagerInsert(fnNextNo('FM'),$article,$room,$articleNote,$del);
-		   $res = mysqli_query($conn,$sql); */
+		$sql = fnSqlFManagerInsert(fnNextNo('FM'), $article, $room, $articleNote, $del);
+		$res = mysqli_query($conn, $sql); //ファイルマネージャーにデータを保存する
 	}
 
 	$_REQUEST['act'] = 'articleSearch';
