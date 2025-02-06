@@ -82,6 +82,8 @@ function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $a
 	$sql .= ",KEYBOX = '$keyBox'";
 	$sql .= ",DRAWING = '$drawing'";
 	$sql .= ",SELLCHARGE = '$sellCharge'";
+	// 更新日時について記載する
+	$sql .= ",UPDT = CURRENT_TIMESTAMP";
 	$sql .= ",DEL = '$del'";
 	$sql .= " WHERE ARTICLENO = $articleNo";
 
