@@ -9,7 +9,7 @@ function fnConstEditCheck() {
 	}
 
 	if (isLength(100, "築年", form.years)) { return; } //スペルチェックとreturn文の追加
-	if (isNumericLength(8, "販売予定額", form.sellPrice)) { return; }
+	if (isNumericLength(9, "販売予定額", form.sellPrice)) { return; } //桁数変更
 	if (isNumericLength(9, "内装見越額", form.interiorPrice)) { return; } //値変更
 	if (isLength(100, "施工業者", form.constTrader)) { return; }
 	if (isNumericLength(9, "工事金額", form.constPrice)) { return; }
