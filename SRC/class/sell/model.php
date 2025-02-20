@@ -84,7 +84,7 @@ function fnSqlSellList($flg, $param)
 //
 function fnSqlSellEdit($sellNo)
 {
-    $select  = "SELECT SEARCHDT,ARTICLE,ADDRESS,STATION,IF(FOOT > 0,FOOT,''),";
+    $select  = "SELECT IF(SEARCHDT > '0000-00-00',DATE_FORMAT(SEARCHDT,'%Y/%m/%d'),''),ARTICLE,ADDRESS,STATION,IF(FOOT > 0,FOOT,''),"; //日付書式の設定
     $select .= "IF(YEARS > 0,YEARS,''),IF(FLOOR > 0,FLOOR,''),IF(AREA > 0,AREA,''),SELLER,IF(PRICE > 0,PRICE,''),NOTE";
     $from = " FROM TBLSELL";
     $where = " WHERE DEL = 1";
@@ -126,7 +126,7 @@ function fnSqlSellInsert($param)
     $sql .= "'" . $param["sellNo"] . "','" . $param["searchDT"] . "','" . $param["article"] . "','" . $param["address"] . "',"
         . "'" . $param["station"] . "','" . $param["foot"] . "','" . $param["years"] . "','" . $param["floor"] . "',"
         . "'" . $param["area"] . "','" . $param["seller"] . "','" . $param["price"] . "','" . $param["note"] . "',"
-        . "CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1)"; //削除フラグと値を設定
+        . "CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1)"; //削除フラグ値を設定
 
     return $sql;
 }
