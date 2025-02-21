@@ -111,7 +111,7 @@ function fnSellEditCheck() {
 
 
 function fnSellDeleteCheck(no, nm) {
-	if (confirm('「' + nm + '」を削除します。よろしいですか？')) {
+	if (confirm('削除します。よろしいですか？')) { //削除時のエラーメッセージ変更
 		form.sellNo.value = no;
 		form.act.value = 'sellDelete';
 		form.submit();

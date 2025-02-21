@@ -138,7 +138,7 @@ function fnSqlSellInsert($param)
 function fnSqlSellDelete($sellNo)
 {
     $sql = "UPDATE TBLSELL";
-    $sql .= " SET DEL = 1";
+    $sql .= " SET DEL = -1"; //削除の値に設定
     $sql .= ",UPDT = CURRENT_TIMESTAMP";
     $sql .= " WHERE SELLNO = '$sellNo'";
 
