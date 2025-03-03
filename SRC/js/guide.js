@@ -4,7 +4,7 @@
 function fnGuideEditCheck() {
 
 	var cnt = document.form.cnt.value;
-	for (i = 1; i < cnt; i++) {
+	for (i = 0; i < cnt; i++) { //1件目から入力チェックに変更
 
 		var msg = "";
 		if (cnt > 1) { msg = (i + 1) + "件目の"; }
