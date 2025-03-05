@@ -554,7 +554,7 @@ function subFManagerViewEditComplete()
 	}
 
 	if ($_FILES['pdfFile']['tmp_name']) {
-		move_uploaded_file($_FILES['pdfFile']['tmp_name'], './pdfs/' . $pdfNo . '.pdf');
+		move_uploaded_file($_FILES['pdfFile']['tmp_name'], './pdfs/' . substr('0000000000' . $pdfNo, -10) . '.pdf'); //pdfnoの処理設定を追加
 	}
 
 	$_REQUEST['act'] = 'fManagerView';
