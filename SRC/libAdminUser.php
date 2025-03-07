@@ -8,6 +8,8 @@ function subAdminUser()
 
 	subMenu();
 ?>
+	<script type="text/javascript" src="./js/adminUser.js"></script> //削除の呼び出し
+
 	<h1>ユーザー情報画面</h1>
 
 	<form name="form" id="form" action="index.php" method="post">
