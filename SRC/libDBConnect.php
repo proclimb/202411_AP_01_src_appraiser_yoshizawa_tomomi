@@ -3,13 +3,13 @@
 //
 // ログイン
 //
-function fnSqlLogin($id, $pw)
+function fnSqlLogin($id)
 {
     $id = addslashes($id);
-    $sql = "SELECT USERNO,AUTHORITY FROM TBLUSER";
+    $sql = "SELECT USERNO,AUTHORITY,PASSWORD FROM TBLUSER";
     $sql .= " WHERE DEL = 1";
     $sql .= " AND ID = '$id'";
-    $sql .= " AND PASSWORD = '$pw'";
+    //$sql .= " AND PASSWORD = '$pw'";
 
     return ($sql);
 }
@@ -59,7 +59,7 @@ function fnSqlAdminUserUpdate($userNo, $name, $id, $password, $authority)
 //
 function fnSqlAdminUserInsert($userNo, $name, $id, $password, $authority)
 {
-    $pass = addslashes(hash('adler32', $password));
+    $pass = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO TBLUSER(";
     $sql .= "USERNO,NAME,ID,PASSWORD,AUTHORITY,INSDT,UPDT,DEL";
     $sql .= ")VALUES(";
@@ -88,11 +88,11 @@ function fnNextNo($t)
 {
     $conn = fnDbConnect();
 
-    $sql = "SELECT MAX(".$t."NO) FROM TBL".$t;
+    $sql = "SELECT MAX(" . $t . "NO) FROM TBL" . $t;
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($res);
     if ($row[0]) {
-        $max = $row[0];
+        $max = $row[0] + 1;
     } else {
         $max = 1;
     }

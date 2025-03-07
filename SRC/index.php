@@ -1,41 +1,41 @@
 <?php
 // ライブラリの呼出し
-require ('libDBInit.php');
-require ('libDBConnect.php');
-require ('libPage.php');
+require('libDBInit.php');
+require('libDBConnect.php');
+require('libPage.php');
 
 // ユーザ&メニュー
-require ('libAdminUser.php');
-require ('libLoginout.php');
-require ('libMenu.php');
+require('libAdminUser.php');
+require('libLoginout.php');
+require('libMenu.php');
 
 // 売主
-require ('class/sell/control.php');
+require('class/sell/control.php');
 
 // 仕入
-require ('class/stock/control.php');
+require('class/stock/control.php');
 
 // 物件
-require ('libArticle.php');
-require ('libDBArticle.php');
+require('libArticle.php');
+require('libDBArticle.php');
 
 // 工事
-require ('libConst.php');
-require ('libDBConst.php');
+require('libConst.php');
+require('libDBConst.php');
 
 // 業者
-require ('libTrade.php');
-require ('libDBTrade.php');
+require('libTrade.php');
+require('libDBTrade.php');
 
 // 案内
-require ('class/guide/control.php');
+require('class/guide/control.php');
 
 // ファイルマネージャー
-require ('libFManager.php');
-require ('libDBFManager.php');
+require('libFManager.php');
+require('libDBFManager.php');
 
 // タイトル変更
-require ('class/title/control.php');
+require('class/title/control.php');
 
 // 一覧表示件数
 define("PAGE_MAX", 100);
@@ -69,174 +69,180 @@ if ($_COOKIE['cUserNo'] != '' && $_COOKIE['authority'] != '') {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="./css/style.css" />
-<script type="text/javascript" src="./js/common.js"></script>
-<script type="text/javascript" src="./js/jkl-calendar.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/jkl-calendar.js"></script>
 </head>
 
 <body>
 
-<?php
-switch ($_REQUEST['act']) {
+    <?php
+    // パスワードハッシュ化、複合化
+    define("PASSWORD_DEFAULT", "2y");
 
-    // ログイン
-    case '':
-    case 'reLogin':
-        subLogin();
-        break;
 
-    // ログイン後のメニュー表示
-    case 'menu':
-        subMenu();
-        break;
+    switch ($_REQUEST['act']) {
 
-    // ユーザー情報
-    case 'adminUser':
-        subAdminUser();
-        break;
+        // ログイン
+        case '':
+        case 'reLogin':
+            subLogin();
+            break;
 
-    case 'adminUserEdit':
-        subAdminUserEdit();
-        break;
+        // ログイン後のメニュー表示
+        case 'menu':
+            subMenu();
+            break;
 
-    case 'adminUserEditComplete':
-        subAdminUserEditComplete();
-        break;
+        // ユーザー情報
+        case 'adminUser':
+            subAdminUser();
+            break;
 
-    case 'adminUserDelete':
-        subAdminUserDelete();
-        break;
+        case 'adminUserEdit':
+            subAdminUserEdit();
+            break;
 
-    // 売主物件
-    case 'sell':
-    case 'sellSearch':
-    case 'sellEdit':
-    case 'sellEditComplete':
-    case 'sellDelete':
-        sell_control();
-        break;
+        case 'adminUserEditComplete':
+            subAdminUserEditComplete();
+            break;
 
-    // 仕入管理
-    case 'stock':
-    case 'stockSearch':
-    case 'stockEdit':
-    case 'stockEditComplete':
-    case 'stockDelete':
-    case 'stockListDelete':
-        stock_control();
-        break;
+        case 'adminUserDelete':
+            subAdminUserDelete();
+            break;
 
-    // 物件管理
-    case 'article':
-    case 'articleSearch':
-        subArticle();
-        break;
+        // 売主物件
+        case 'sell':
+        case 'sellSearch':
+        case 'sellEdit':
+        case 'sellEditComplete':
+        case 'sellDelete':
+            sell_control();
+            break;
 
-    case 'articleEdit':
-        subArticleEdit();
-        break;
+        // 仕入管理
+        case 'stock':
+        case 'stockSearch':
+        case 'stockEdit':
+        case 'stockEditComplete':
+        case 'stockDelete':
+        case 'stockListDelete':
+            stock_control();
+            break;
 
-    case 'articleEditComplete':
-        subArticleEditComplete();
-        break;
+        // 物件管理
+        case 'article':
+        case 'articleSearch':
+            subArticle();
+            break;
 
-    case 'articleDelete':
-        subArticleDelete();
-        break;
+        case 'articleEdit':
+            subArticleEdit();
+            break;
 
-    // 工事管理表関連処理
-    case 'const':
-    case 'constSearch':
-        subConst();
-        break;
+        case 'articleEditComplete':
+            subArticleEditComplete();
+            break;
 
-    case 'constEdit':
-        subConstEdit();
-        break;
+        case 'articleDelete':
+            subArticleDelete();
+            break;
 
-    case 'constEditComplete':
-        subConstEditComplete();
-        break;
+        // 工事管理表関連処理
+        case 'const':
+        case 'constSearch':
+            subConst();
+            break;
 
-    // 業者一覧関連処理
-    case 'trade':
-    case 'tradeSearch':
-        subTrade();
-        break;
+        case 'constEdit':
+            subConstEdit();
+            break;
 
-    case 'tradeEdit':
-        subTradeEdit();
-        break;
+        case 'constEditComplete':
+            subConstEditComplete();
+            break;
 
-    case 'tradeEditComplete':
-        subTradeEditComplete();
-        break;
+        // 業者一覧関連処理
+        case 'trade':
+        case 'tradeSearch':
+            subTrade();
+            break;
 
-    case 'tradeDelete':
-        subTradeDelete();
-        break;
+        case 'tradeEdit':
+            subTradeEdit();
+            break;
 
-    // 案内管理関連処理
-    case 'guide':
-    case 'guideSearch':
-    case 'guideShowTrade':
-    case 'guideShowKey':
-    case 'guideChoice':
-    case 'guideChoiceSearch':
-    case 'guideEdit':
-    case 'guideEditComplete':
-    case 'guideDelete':
-        guide_control();
-        break;
+        case 'tradeEditComplete':
+            subTradeEditComplete();
+            break;
 
-    // ファイルマネージャ関連処理
-    case 'fManager':
-    case 'fManagerSearch':
-        subFManager();
-        break;
+        case 'tradeDelete':
+            subTradeDelete();
+            break;
 
-    case 'fManagerEdit':
-        subFManagerEdit();
-        break;
+        // 案内管理関連処理
+        case 'guide':
+        case 'guideSearch':
+        case 'guideShowTrade':
+        case 'guideShowKey':
+        case 'guideChoice':
+        case 'guideChoiceSearch':
+        case 'guideEdit':
+        case 'guideEditComplete':
+        case 'guideDelete':
+            guide_control();
+            break;
 
-    case 'fManagerEditComplete':
-        subFManagerEditComplete();
-        break;
+        // ファイルマネージャ関連処理
+        case 'fManager':
+        case 'fManagerSearch':
+            subFManager();
+            break;
 
-    case 'fManagerDelete':
-        subFManagerDelete();
-        break;
+        case 'fManagerEdit':
+            subFManagerEdit();
+            break;
 
-    case 'fManagerView':
-        subFManagerView();
-        break;
+        case 'fManagerEditComplete':
+            subFManagerEditComplete();
+            break;
 
-    case 'fManagerViewEdit':
-        subFManagerViewEdit();
-        break;
+        case 'fManagerDelete':
+            subFManagerDelete();
+            break;
 
-    case 'fManagerViewEditComplete':
-        subFManagerViewEditComplete();
-        break;
+        case 'fManagerView':
+            subFManagerView();
+            break;
 
-    case 'fManagerViewDelete':
-        subFManagerViewDelete();
-        break;
+        case 'fManagerViewEdit':
+            subFManagerViewEdit();
+            break;
 
-    // タイトル管理関連処理
-    case 'fTitle':
-    case 'fTitleSearch':
-    case 'fTitleItemSearch':
-    case 'fTitleEdit':
-    case 'fTitleEditComplete':
-    case 'fTitleDelete':
-    case 'fTitleItemEdit':
-        Ftitle_control();
-        break;
-}
-?>
+        case 'fManagerViewEditComplete':
+            subFManagerViewEditComplete();
+            break;
+
+        case 'fManagerViewDelete':
+            subFManagerViewDelete();
+            break;
+
+        // タイトル管理関連処理
+        case 'fTitle':
+        case 'fTitleSearch':
+        case 'fTitleItemSearch':
+        case 'fTitleEdit':
+        case 'fTitleEditComplete':
+        case 'fTitleDelete':
+        case 'fTitleItemEdit':
+            Ftitle_control();
+            break;
+    }
+    ?>
 
 </body>
+
 </html>
