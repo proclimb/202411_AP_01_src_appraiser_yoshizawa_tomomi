@@ -42,11 +42,15 @@ function fnSqlAdminUserEdit($userNo)
 //
 function fnSqlAdminUserUpdate($userNo, $name, $id, $password, $authority)
 {
-    $pass = addslashes(hash('adler32', $password));
+    if ($password !== "") {
+        $pass = password_hash($password, PASSWORD_DEFAULT); //パスワード変更有無の分岐と安全なハッシュ化
+    }
     $sql = "UPDATE TBLUSER";
     $sql .= " SET NAME = '$name'";
     $sql .= ",ID = '$id'";
-    $sql .= ",PASSWORD = '$pass'";
+    if ($password !== "") {
+        $sql .= ",PASSWORD = '$pass'";
+    }
     $sql .= ",AUTHORITY = '$authority'";
     $sql .= ",UPDT = CURRENT_TIMESTAMP";
     $sql .= " WHERE USERNO = '$userNo'";
@@ -59,7 +63,7 @@ function fnSqlAdminUserUpdate($userNo, $name, $id, $password, $authority)
 //
 function fnSqlAdminUserInsert($userNo, $name, $id, $password, $authority)
 {
-    $pass = password_hash($password, PASSWORD_DEFAULT);
+    $pass = password_hash($password, PASSWORD_DEFAULT); //安全なハッシュ化
     $sql = "INSERT INTO TBLUSER(";
     $sql .= "USERNO,NAME,ID,PASSWORD,AUTHORITY,INSDT,UPDT,DEL";
     $sql .= ")VALUES(";
