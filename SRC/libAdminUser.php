@@ -43,7 +43,10 @@ function subAdminUser()
 						<td class="list_td<?php print $i; ?>"><?php print $password; ?></td>
 						<td class="list_td<?php print $i; ?>"><?php print fnAuthorityName($authority); ?></td>
 						<td class="list_td<?php print $i; ?>">
-							<a href="javascript:fnAdminUserDeleteCheck(<?php print $userNo; ?>,'<?php print $name; ?>');">削除</a>
+							<?php if ($authority == 1) { // 管理者権限を持たない場合に削除リンクを表示
+							?>
+								<a href="javascript:fnAdminUserDeleteCheck(<?php print $userNo; ?>,'<?php print $name; ?>');">削除</a>
+							<?php } ?>
 						</td>
 					</tr>
 				<?php
